@@ -11,6 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
 
 public class AdapterMunicipios extends
@@ -24,8 +32,30 @@ public class AdapterMunicipios extends
         Init();
     }
     public void Init() {
-        // We read the JSON file and fill the “municipios” ArrayList
+        municipios=new ArrayList<Municipio>();
+        InputStream is = context.getResources().openRawResource(R.raw.coviddata);
+        Writer writer = new StringWriter();
+        char[] buffer = new char[1024];
+        try {
+            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);}
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //The String writer.toString() must be parsed in the municipalities ArrayList by
+        //using JSONArray and JSONObject
     }
+
     @Override
     public int getItemCount() {
         return municipios.size();
