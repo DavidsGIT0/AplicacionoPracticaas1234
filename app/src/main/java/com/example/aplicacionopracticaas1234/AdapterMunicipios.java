@@ -25,10 +25,11 @@ public class AdapterMunicipios extends
         RecyclerView.Adapter<AdapterMunicipios.ViewHolder> {
     private ArrayList<Municipio> municipios;
     Context context;
-    public AdapterMunicipios(Context c)
-    {
-        context=c;
-        Init();
+
+    public AdapterMunicipios(Context c, ArrayList<Municipio> municipios){
+        this.municipios = municipios;
+        context = c;
+        //Init();
     }
     public void Init() {
         municipios=new ArrayList<Municipio>();
@@ -59,20 +60,6 @@ public class AdapterMunicipios extends
     public int getItemCount() {
         return municipios.size();
     }
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
-        public ViewHolder(View view) {
-            super(view);
-            textView = (TextView) view.findViewById(R.id.textView);
-        }
-        public TextView getTextView() {
-            return textView;
-        }
-    }
     // Create new views (invoked by the layout manager)
     @NonNull
     @Override
@@ -84,9 +71,43 @@ public class AdapterMunicipios extends
         return new ViewHolder(view);
     }
 
+    @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        holder.getTextView().setText(String.valueOf(municipios.get(position).getMunicipi()));
+        //holder.getTextViewMunicipi().setText(String.valueOf(municipios.get(position).getMunicipi()));
+        holder.asignarMunicipio(municipios.get(position).getMunicipi());
+       //holder.asignarCasos(municipios.get(position).getCasosPCR());
+
+    }
+
+
+    /**
+     * Provide a reference to the type of views that you are using
+     * (custom ViewHolder).
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView municipi;
+        private TextView casos;
+
+        public ViewHolder(View view) {
+            super(view);
+            municipi = (TextView) view.findViewById(R.id.municipi);
+            casos = (TextView) view.findViewById(R.id.casos);
+        }
+        public TextView getTextViewMunicipi() {
+            return municipi;
+        }
+        public TextView getTextViewCasos() {
+            return casos;
+        }
+
+        public void asignarMunicipio(String municipi) {
+            this.municipi.setText(municipi);
+        }
+
+        public void asignarCasos(Integer casosPCR) {
+            this.casos.setText(casosPCR);
+        }
     }
 }
