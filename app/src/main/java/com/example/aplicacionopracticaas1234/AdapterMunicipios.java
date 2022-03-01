@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,12 +31,14 @@ public class AdapterMunicipios extends
     public AdapterMunicipios(Context c, ArrayList<Municipio> municipios){
         this.municipios = municipios;
         context = c;
-        //Init();
+        Init();
     }
     public void Init() {
         municipios=new ArrayList<Municipio>();
         InputStream is = context.getResources().openRawResource(R.raw.coviddata);
         Writer writer = new StringWriter();
+
+        JSONObject json;
         char[] buffer = new char[1024];
         try {
             Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -48,7 +52,10 @@ public class AdapterMunicipios extends
         } finally {
             try {
                 is.close();
-            } catch (IOException e) {
+                String jsonS = new String(buffer);
+                json = new JSONObject(jsonS);
+                System.out.println(json.getJSONObject("records").getString("Municipi"));
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         }
