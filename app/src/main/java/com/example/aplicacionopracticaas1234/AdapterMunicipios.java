@@ -25,7 +25,6 @@ public class AdapterMunicipios extends
         RecyclerView.Adapter<AdapterMunicipios.ViewHolder> {
     private ArrayList<Municipio> municipios;
     Context context;
-    public AdapterMunicipios(){}
     public AdapterMunicipios(Context c)
     {
         context=c;
