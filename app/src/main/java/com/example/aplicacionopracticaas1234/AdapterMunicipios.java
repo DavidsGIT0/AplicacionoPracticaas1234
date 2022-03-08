@@ -51,11 +51,13 @@ public class AdapterMunicipios extends
             e.printStackTrace();
         } finally {
             try {
-                is.close();
                 String jsonS = new String(buffer);
-                json = new JSONObject(jsonS);
-                System.out.println(json.getJSONObject("records").getString("Municipi"));
-            } catch (IOException | JSONException e) {
+                //json = new JSONObject(jsonS);
+
+                System.out.println("AAAAAAAAAAAA"+jsonS);
+                //System.out.println(json.getJSONObject("records").getString("Municipi"));
+                is.close();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
