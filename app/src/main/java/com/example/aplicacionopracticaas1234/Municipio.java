@@ -6,15 +6,15 @@ public class Municipio {
     private String municipi;
     private Integer casosPCR;
     private Integer casosPCR_14;
-    private Double incidencia_acumulada;
-    private Double incidencia_acumulada_14;
+    private String incidencia_acumulada;
+    private String incidencia_acumulada_14;
     private Long defuncions;
-    private Double taxa_defuncio;
+    private String taxa_defuncio;
 
     public Municipio() {
     }
 
-    public Municipio(Long id, Long codMuncipio, String municipi, Integer casosPCR, Integer casosPCR_14, Double incidencia_acumulada, Double incidencia_acumulada_14, Long defuncions, Double taxa_defuncio) {
+    public Municipio(Long id, Long codMuncipio, String municipi, Integer casosPCR, Integer casosPCR_14, String incidencia_acumulada, String incidencia_acumulada_14, Long defuncions, String taxa_defuncio) {
         this.id = id;
         this.codMuncipio = codMuncipio;
         this.municipi = municipi;
@@ -66,19 +66,19 @@ public class Municipio {
         this.casosPCR_14 = casosPCR_14;
     }
 
-    public Double getIncidencia_acumulada() {
+    public String getIncidencia_acumulada() {
         return incidencia_acumulada;
     }
 
-    public void setIncidencia_acumulada(Double incidencia_acumulada) {
+    public void setIncidencia_acumulada(String incidencia_acumulada) {
         this.incidencia_acumulada = incidencia_acumulada;
     }
 
-    public Double getIncidencia_acumulada_14() {
+    public String getIncidencia_acumulada_14() {
         return incidencia_acumulada_14;
     }
 
-    public void setIncidencia_acumulada_14(Double incidencia_acumulada_14) {
+    public void setIncidencia_acumulada_14(String incidencia_acumulada_14) {
         this.incidencia_acumulada_14 = incidencia_acumulada_14;
     }
 
@@ -90,11 +90,11 @@ public class Municipio {
         this.defuncions = defuncions;
     }
 
-    public Double getTaxa_defuncio() {
+    public String getTaxa_defuncio() {
         return taxa_defuncio;
     }
 
-    public void setTaxa_defuncio(Double taxa_defuncio) {
+    public void setTaxa_defuncio(String taxa_defuncio) {
         this.taxa_defuncio = taxa_defuncio;
     }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -51,15 +52,28 @@ public class AdapterMunicipios extends
             e.printStackTrace();
         } finally {
             try {
-                String jsonS = new String(buffer);
-                //json = new JSONObject(jsonS);
+                Municipio municipi = new Municipio();
+                JSONArray jsonArray = new JSONObject(writer.toString()).getJSONObject("result").getJSONArray("records");
+                for(int i = 0; i < jsonArray.length(); i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    municipi.setId(Long.parseLong(jsonObject.getString("_id")));
+                    municipi.setCodMuncipio(Long.parseLong(jsonObject.getString("CodMunicipio")));
+                    municipi.setMunicipi(jsonObject.getString("Municipi"));
+                    municipi.setCasosPCR(Integer.parseInt(jsonObject.getString("Casos PCR+")));
+                    municipi.setIncidencia_acumulada(jsonObject.getString("Incidència acumulada PCR+"));
+                    municipi.setCasosPCR_14(Integer.parseInt(jsonObject.getString("Casos PCR+ 14 dies")));
+                    municipi.setIncidencia_acumulada_14(jsonObject.getString("Incidència acumulada PCR+14"));
+                    municipi.setDefuncions(Long.parseLong(jsonObject.getString("Defuncions")));
+                    municipi.setTaxa_defuncio(jsonObject.getString("Taxa de defunció"));
 
-                System.out.println("AAAAAAAAAAAA"+jsonS);
-                //System.out.println(json.getJSONObject("records").getString("Municipi"));
+                    //System.out.println(jsonObject.getString("Municipi"));
+
+                }
                 is.close();
-            } catch (IOException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
+
         }
         //The String writer.toString() must be parsed in the municipalities ArrayList by
         //using JSONArray and JSONObject
