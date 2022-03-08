@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
+        /*
         municipios = new ArrayList<Municipio>();
         Municipio municipio = new Municipio();
         municipio.setMunicipi("HomeSweetAlacama");
@@ -30,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         municipio.setMunicipi("HomeSaltyAlacama");
         municipio.setCasosPCR(2);
         municipios.add(municipio);
+        */
 
-        AdapterMunicipios adapterMunicipios = new AdapterMunicipios(this, municipios);
+        AdapterMunicipios adapterMunicipios = new AdapterMunicipios(this);
 
         recyclerView.setAdapter(adapterMunicipios);
     }

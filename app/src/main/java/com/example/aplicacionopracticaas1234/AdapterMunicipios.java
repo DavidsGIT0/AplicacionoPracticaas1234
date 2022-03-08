@@ -29,8 +29,7 @@ public class AdapterMunicipios extends
     private ArrayList<Municipio> municipios;
     Context context;
 
-    public AdapterMunicipios(Context c, ArrayList<Municipio> municipios){
-        this.municipios = municipios;
+    public AdapterMunicipios(Context c){
         context = c;
         Init();
     }
@@ -52,10 +51,12 @@ public class AdapterMunicipios extends
             e.printStackTrace();
         } finally {
             try {
-                Municipio municipi = new Municipio();
+                Municipio municipi;
                 JSONArray jsonArray = new JSONObject(writer.toString()).getJSONObject("result").getJSONArray("records");
                 for(int i = 0; i < jsonArray.length(); i++){
+                    municipi = new Municipio();
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
+
                     municipi.setId(Long.parseLong(jsonObject.getString("_id")));
                     municipi.setCodMuncipio(Long.parseLong(jsonObject.getString("CodMunicipio")));
                     municipi.setMunicipi(jsonObject.getString("Municipi"));
@@ -67,7 +68,7 @@ public class AdapterMunicipios extends
                     municipi.setTaxa_defuncio(jsonObject.getString("Taxa de defunció"));
 
                     //System.out.println(jsonObject.getString("Municipi"));
-
+                    municipios.add(municipi);
                 }
                 is.close();
             } catch (IOException | JSONException e) {
@@ -100,7 +101,7 @@ public class AdapterMunicipios extends
         // contents of the view with that element
         //holder.getTextViewMunicipi().setText(String.valueOf(municipios.get(position).getMunicipi()));
         holder.asignarMunicipio(municipios.get(position).getMunicipi());
-       //holder.asignarCasos(municipios.get(position).getCasosPCR());
+        holder.asignarCasos(municipios.get(position).getCasosPCR());
 
     }
 
@@ -130,7 +131,7 @@ public class AdapterMunicipios extends
         }
 
         public void asignarCasos(Integer casosPCR) {
-            this.casos.setText(casosPCR);
+            this.casos.setText(casosPCR.toString());
         }
     }
 }
