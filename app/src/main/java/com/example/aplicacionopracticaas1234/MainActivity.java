@@ -4,14 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     ArrayList<Municipio> municipios;
     RecyclerView recyclerView;
+    AdapterMunicipios adapterMunicipios;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,22 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-
-        /*
-        municipios = new ArrayList<Municipio>();
-        Municipio municipio = new Municipio();
-        municipio.setMunicipi("HomeSweetAlacama");
-        municipio.setCasosPCR(12);
-        //for(){}
-        municipios.add(municipio);
-
-        municipio.setMunicipi("HomeSaltyAlacama");
-        municipio.setCasosPCR(2);
-        municipios.add(municipio);
-        */
-
-        AdapterMunicipios adapterMunicipios = new AdapterMunicipios(this);
+        adapterMunicipios = new AdapterMunicipios(this, this);
 
         recyclerView.setAdapter(adapterMunicipios);
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
+        Intent sendIntent = new Intent(MainActivity.this, FullInformation.class);
+        Municipio mun = adapterMunicipios.getMunicipio(position);
+        sendIntent.putExtra("Municipio", mun);
+        startActivity(sendIntent);
     }
 }

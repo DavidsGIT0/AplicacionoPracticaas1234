@@ -1,6 +1,8 @@
 package com.example.aplicacionopracticaas1234;
 
-public class Municipio {
+import java.io.Serializable;
+
+public class Municipio implements Serializable {
     private Long id;
     private Long codMuncipio;
     private String municipi;

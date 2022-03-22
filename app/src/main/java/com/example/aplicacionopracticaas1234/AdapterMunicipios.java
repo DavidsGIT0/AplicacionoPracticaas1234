@@ -24,15 +24,22 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class AdapterMunicipios extends
-        RecyclerView.Adapter<AdapterMunicipios.ViewHolder> {
+public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.ViewHolder> {
+    private final RecyclerViewInterface recyclerViewInterface;
     private ArrayList<Municipio> municipios;
     Context context;
+    private View.OnClickListener mOnItemClickListener;
 
-    public AdapterMunicipios(Context c){
+    public AdapterMunicipios(Context c, RecyclerViewInterface recyclerViewInterface){
         context = c;
+        this.recyclerViewInterface = recyclerViewInterface;
         Init();
     }
+
+    public Municipio getMunicipio(int pos){
+        return municipios.get(pos);
+    }
+
     public void Init() {
         municipios=new ArrayList<Municipio>();
         InputStream is = context.getResources().openRawResource(R.raw.coviddata);
@@ -92,7 +99,7 @@ public class AdapterMunicipios extends
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.listamunicipiosview, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, recyclerViewInterface);
     }
 
     @Override
@@ -114,10 +121,23 @@ public class AdapterMunicipios extends
         private TextView municipi;
         private TextView casos;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view, RecyclerViewInterface recyclerViewInterface) {
             super(view);
             municipi = (TextView) view.findViewById(R.id.municipi);
             casos = (TextView) view.findViewById(R.id.casos);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewInterface != null){
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
         public TextView getTextViewMunicipi() {
             return municipi;
@@ -134,4 +154,5 @@ public class AdapterMunicipios extends
             this.casos.setText(casosPCR.toString());
         }
     }
+
 }

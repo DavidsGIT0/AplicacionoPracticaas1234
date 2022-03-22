@@ -7,71 +7,11 @@
     tools:context=".FullInformation">
 
     <TextView
-        android:id="@+id/fDefuncions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="584dp"
-        android:layout_marginEnd="172dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/fTaxaDefuncions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="672dp"
-        android:layout_marginEnd="176dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/fAcumulada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
-        android:layout_marginEnd="168dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/fCasos14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="424dp"
-        android:layout_marginEnd="168dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/fAcumulada14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="172dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/fCasos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="284dp"
-        android:layout_marginEnd="172dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="172dp"
         android:text="Municipi:"
         android:textColor="#000000"
         android:textColorHighlight="#FFDEDE"
@@ -80,41 +20,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/fTaxaDefuncions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="648dp"
-        android:layout_marginEnd="168dp"
-        android:text="Taxa de defunció:"
-        android:textColor="#000000"
-        android:textColorHighlight="#FFDEDE"
-        android:textSize="20sp"
+        android:layout_marginTop="592dp"
+        android:layout_marginEnd="188dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/fCasos14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="552dp"
-        android:layout_marginEnd="168dp"
-        android:text="Defuncions:"
-        android:textColor="#000000"
-        android:textColorHighlight="#FFDEDE"
-        android:textSize="20sp"
+        android:layout_marginTop="376dp"
+        android:layout_marginEnd="176dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/fMunicipi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="148dp"
-        android:text="Casos PCR +14 dies:"
-        android:textColor="#000000"
-        android:textColorHighlight="#FFDEDE"
-        android:textSize="20sp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="176dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -122,35 +53,9 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="336dp"
-        android:layout_marginEnd="112dp"
+        android:layout_marginTop="288dp"
+        android:layout_marginEnd="120dp"
         android:text="Incidència acumulada PCR+:"
-        android:textColor="#000000"
-        android:textColorHighlight="#FFDEDE"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="172dp"
-        android:text="Casos PCR+:"
-        android:textColor="#000000"
-        android:textColorHighlight="#FFDEDE"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
-        android:layout_marginEnd="160dp"
-        android:text="Cod Municipio:"
         android:textColor="#000000"
         android:textColorHighlight="#FFDEDE"
         android:textSize="20sp"
@@ -161,8 +66,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="172dp"
         android:text="Id:"
         android:textColor="#000000"
         android:textColorHighlight="#FFDEDE"
@@ -174,8 +79,8 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="476dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginTop="428dp"
+        android:layout_marginEnd="96dp"
         android:text="Incidència acumulada PCR+14:"
         android:textColor="#000000"
         android:textColorHighlight="#FFDEDE"
@@ -184,11 +89,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/fMunicipi"
+        android:id="@+id/fAcumulada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="168dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="176dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -197,9 +102,91 @@
         android:id="@+id/fId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="172dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="168dp"
+        android:text="Cod Municipio:"
+        android:textColor="#000000"
+        android:textColorHighlight="#FFDEDE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fCasos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="180dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="352dp"
+        android:layout_marginEnd="156dp"
+        android:text="Casos PCR +14 dies:"
+        android:textColor="#000000"
+        android:textColorHighlight="#FFDEDE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fAcumulada14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="452dp"
+        android:layout_marginEnd="180dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fDefuncions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="536dp"
+        android:layout_marginEnd="180dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="180dp"
+        android:text="Casos PCR+:"
+        android:textColor="#000000"
+        android:textColorHighlight="#FFDEDE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="504dp"
+        android:layout_marginEnd="176dp"
+        android:text="Defuncions:"
+        android:textColor="#000000"
+        android:textColorHighlight="#FFDEDE"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -207,9 +194,22 @@
         android:id="@+id/fCodMunicipio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="168dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="568dp"
+        android:layout_marginEnd="184dp"
+        android:text="Taxa de defunció:"
+        android:textColor="#000000"
+        android:textColorHighlight="#FFDEDE"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
