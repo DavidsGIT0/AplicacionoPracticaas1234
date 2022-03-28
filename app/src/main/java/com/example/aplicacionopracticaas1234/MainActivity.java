@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     ArrayList<Municipio> municipios;
     RecyclerView recyclerView;
     AdapterMunicipios adapterMunicipios;
+    FloatingActionButton addButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +28,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         adapterMunicipios = new AdapterMunicipios(this, this);
 
         recyclerView.setAdapter(adapterMunicipios);
+        addButton = findViewById(R.id.addButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ReportsActivity.class));
+            }
+        });
     }
 
 
