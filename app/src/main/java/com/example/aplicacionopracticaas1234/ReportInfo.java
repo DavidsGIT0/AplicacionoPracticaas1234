@@ -6,7 +6,25 @@ public class ReportInfo {
     private Boolean fever, cough, shortness, fatigue, muscle, headache, newLoss, sore, congestion, nausea,
             diarrhea, closeContact;
 
+    public ReportInfo(String startDate, Boolean fever, Boolean cough, Boolean shortness, Boolean fatigue, Boolean muscle, Boolean headache, Boolean newLoss, Boolean sore, Boolean congestion, Boolean nausea, Boolean diarrhea, Boolean closeContact) {
+        this.startDate = startDate;
+        this.fever = fever;
+        this.cough = cough;
+        this.shortness = shortness;
+        this.fatigue = fatigue;
+        this.muscle = muscle;
+        this.headache = headache;
+        this.newLoss = newLoss;
+        this.sore = sore;
+        this.congestion = congestion;
+        this.nausea = nausea;
+        this.diarrhea = diarrhea;
+        this.closeContact = closeContact;
+
+    }
+
     public ReportInfo(Integer diagnosticCode, String startDate, Boolean fever, Boolean cough, Boolean shortness, Boolean fatigue, Boolean muscle, Boolean headache, Boolean newLoss, Boolean sore, Boolean congestion, Boolean nausea, Boolean diarrhea, Boolean closeContact) {
+
         this.diagnosticCode = diagnosticCode;
         this.startDate = startDate;
         this.fever = fever;
@@ -47,6 +65,7 @@ public class ReportInfo {
     }
 
     public void setFever(Boolean fever) {
+
         this.fever = fever;
     }
 

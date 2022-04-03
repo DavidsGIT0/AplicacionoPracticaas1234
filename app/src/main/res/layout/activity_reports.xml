@@ -290,7 +290,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextDiagnosticCode"
         android:layout_width="202dp"
         android:layout_height="42dp"

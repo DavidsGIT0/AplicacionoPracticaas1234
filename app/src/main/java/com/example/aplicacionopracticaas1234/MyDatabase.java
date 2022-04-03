@@ -2,8 +2,10 @@ package com.example.aplicacionopracticaas1234;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 
 import androidx.annotation.Nullable;
 
@@ -13,21 +15,23 @@ class MyDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SymptomsReport.db";
     private static final Integer DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "Report";
-    private static final String COLUMN_DIAGNOSTIC_CODE = "diagnostic_code";
-    private static final String COLUMN_SYMPTOM_START = "symptom_start";
-    private static final String COLUMN_SYMPTOM_FEVER = "symptom_fever";
-    private static final String COLUMN_SYMPTOM_COUGH= "symptom_cough";
-    private static final String COLUMN_SYMPTOM_SHORTNESS = "symptom_shortness";
-    private static final String COLUMN_SYMPTOM_FATIGUE = "symptom_fatige";
-    private static final String COLUMN_SYMPTOM_MUSCLE = "symptom_muscle";
-    private static final String COLUMN_SYMPTOM_HEADACHE = "symptom_headache";
-    private static final String COLUMN_SYMPTOM_LOSS_TASTE = "symptom_lost_taste";
-    private static final String COLUMN_SYMPTOM_SORE = "symptom_sore";
-    private static final String COLUMN_SYMPTOM_CONGESTION = "symptom_congestion";
-    private static final String COLUMN_SYMPTOM_NAUSEA = "symptom_nausea";
-    private static final String COLUMN_SYMPTOM_DIARRHEA = "symptom_diarrhea";
-    private static final String COLUMN_CLOSE_CONTACT = "close_contact";
+
+        private static final String TABLE_NAME = "Report";
+        private static final String COLUMN_DIAGNOSTIC_ID= "_id";
+        private static final String COLUMN_DIAGNOSTIC_CODE = "diagnostic_code";
+        private static final String COLUMN_SYMPTOM_START = "symptom_start";
+        private static final String COLUMN_SYMPTOM_FEVER = "symptom_fever";
+        private static final String COLUMN_SYMPTOM_COUGH = "symptom_cough";
+        private static final String COLUMN_SYMPTOM_SHORTNESS = "symptom_shortness";
+        private static final String COLUMN_SYMPTOM_FATIGUE = "symptom_fatige";
+        private static final String COLUMN_SYMPTOM_MUSCLE = "symptom_muscle";
+        private static final String COLUMN_SYMPTOM_HEADACHE = "symptom_headache";
+        private static final String COLUMN_SYMPTOM_LOSS_TASTE = "symptom_lost_taste";
+        private static final String COLUMN_SYMPTOM_SORE = "symptom_sore";
+        private static final String COLUMN_SYMPTOM_CONGESTION = "symptom_congestion";
+        private static final String COLUMN_SYMPTOM_NAUSEA = "symptom_nausea";
+        private static final String COLUMN_SYMPTOM_DIARRHEA = "symptom_diarrhea";
+        private static final String COLUMN_CLOSE_CONTACT = "close_contact";
 
     public MyDatabase(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,7 +42,8 @@ class MyDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query =
                 "CREATE TABLE " + TABLE_NAME + " (" +
-                        COLUMN_DIAGNOSTIC_CODE + " integer primary key autoincrement,"+
+                        COLUMN_DIAGNOSTIC_ID + " integer primary key autoincrement,"+
+                        COLUMN_DIAGNOSTIC_CODE + " integer,"+
                         COLUMN_SYMPTOM_START + "  text," +
                         COLUMN_SYMPTOM_FEVER + " integer," +
                         COLUMN_SYMPTOM_COUGH + " integer," +
@@ -62,8 +67,10 @@ class MyDatabase extends SQLiteOpenHelper {
     }
 
     public void InsertReport(ReportInfo reportInfo){
+
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_DIAGNOSTIC_CODE, this.getId());
         contentValues.put(COLUMN_SYMPTOM_START, reportInfo.getStartDate());
         contentValues.put(COLUMN_SYMPTOM_FEVER, reportInfo.getFever() ? 1 : 0);
         contentValues.put(COLUMN_SYMPTOM_COUGH, reportInfo.getCough() ? 1 : 0);
@@ -79,9 +86,18 @@ class MyDatabase extends SQLiteOpenHelper {
         contentValues.put(COLUMN_CLOSE_CONTACT, reportInfo.getCloseContact() ? 1 : 0);
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
     }
-
+    private int getId(){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        Cursor c = sqLiteDatabase.rawQuery("Select MAX(_id) from " + TABLE_NAME, null);
+        c.moveToFirst();
+        int maxId = c.getInt(0) +1;
+        return maxId;
+    }
+    public int getDiagnosticCode(){
+        return  this.getId();
+    }
     public void UpdateReport(SQLiteDatabase sqLiteDatabase){
-
+        //sqLiteDatabase.update();
     }
 
     public void DeleteReport(SQLiteDatabase sqLiteDatabase){
