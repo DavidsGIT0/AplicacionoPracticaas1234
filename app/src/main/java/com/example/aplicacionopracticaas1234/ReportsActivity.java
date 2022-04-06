@@ -13,10 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ReportsActivity extends AppCompatActivity {
-    Button reportAddInfo;
+    Button reportAddInfo, reportUpdateInfo, reportDeleteInfo;
     CheckBox fever, cough, shortness, fatigue, muscle, headache, newLoss, sore, congestion, nausea,
             diarrhea, closeContact;
-    EditText startDate;
+    EditText startDate, diagnosticCode2;
     TextView diagnosticCode;
     ReportInfo reportInfo ;
 
@@ -28,7 +28,9 @@ public class ReportsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reports);
 
         reportAddInfo = (Button) findViewById(R.id.buttonAddInfo);
-        diagnosticCode = (TextView) findViewById(R.id.editTextDiagnosticCode);
+        reportUpdateInfo = (Button) findViewById(R.id.buttonUpdate);
+        reportDeleteInfo = (Button) findViewById(R.id.buttonDelete);
+        diagnosticCode = (TextView) findViewById(R.id.textViewDiagnosticCode);
         startDate = (EditText) findViewById(R.id.editTextSimptomStart);
         fever = (CheckBox) findViewById(R.id.checkFever);
         cough = (CheckBox) findViewById(R.id.checkCough);
@@ -42,6 +44,7 @@ public class ReportsActivity extends AppCompatActivity {
         nausea = (CheckBox) findViewById(R.id.checkNausea);
         diarrhea = (CheckBox) findViewById(R.id.checkDiarrehea);
         closeContact = (CheckBox) findViewById(R.id.checkCloseContact);
+        diagnosticCode2 = (EditText) findViewById(R.id.editTextDiagnosticCode);
 
         reportInfo = new ReportInfo();
         myDatabase = new MyDatabase(this);
@@ -62,6 +65,46 @@ public class ReportsActivity extends AppCompatActivity {
                      myDatabase.InsertReport(reportInfo);
 
                     Toast.makeText(ReportsActivity.this, "Reporte añadido a la bases de datos", Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(ReportsActivity.this, MainActivity.class));
+                }
+            }
+        });
+
+        reportUpdateInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(TextUtils.isEmpty(startDate.getText()) && TextUtils.isEmpty(diagnosticCode2.getText())){
+                    startDate.setError("Es necesario introducir una fecha \n dd-mm-yyyy");
+                    diagnosticCode2.setError("Es necesario introducir un codigo de diagnostico");
+                }
+                else {
+                    reportInfo = new ReportInfo( Integer.valueOf(String.valueOf(diagnosticCode2.getText())),
+                            String.valueOf(startDate.getText()), fever.isChecked(), cough.isChecked(),
+                            shortness.isChecked(), fatigue.isChecked(), muscle.isChecked(), headache.isChecked(),
+                            newLoss.isChecked(), sore.isChecked(), congestion.isChecked(), nausea.isChecked(),
+                            diarrhea.isChecked(), closeContact.isChecked());
+
+                    myDatabase.UpdateReport(reportInfo);
+
+                    Toast.makeText(ReportsActivity.this, "Reporte actualizado en la bases de datos", Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(ReportsActivity.this, MainActivity.class));
+                }
+            }
+        });
+        reportDeleteInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(TextUtils.isEmpty(diagnosticCode2.getText())){
+                   diagnosticCode2.setError("Es necesario introducir un codigo de diagnostico");
+                }
+                else {
+                    reportInfo = new ReportInfo();
+                    reportInfo.setDiagnosticCode(Integer.valueOf(String.valueOf(diagnosticCode2.getText())));
+                    myDatabase.DeleteReport(reportInfo);
+
+                    Toast.makeText(ReportsActivity.this, "Reporte eliminado de la bases de datos", Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(ReportsActivity.this, MainActivity.class));
                 }

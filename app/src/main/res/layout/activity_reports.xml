@@ -132,8 +132,8 @@
         android:id="@+id/checkCloseContact"
         android:layout_width="32dp"
         android:layout_height="19dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="248dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="252dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
@@ -152,8 +152,8 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="480dp"
         android:text="Close contact"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -284,23 +284,24 @@
         android:id="@+id/buttonAddInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="164dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="460dp"
         android:text="add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/editTextDiagnosticCode"
+        android:id="@+id/textViewDiagnosticCode"
         android:layout_width="202dp"
         android:layout_height="42dp"
         android:layout_marginStart="144dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Diagnostic code"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/editTextSimptomStart"
@@ -309,10 +310,53 @@
         android:layout_marginStart="144dp"
         android:layout_marginTop="64dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Symptom start
 "
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="411dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="520dp"
+        android:background="#B5B5B5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="112dp"
+            android:layout_marginBottom="20dp"
+            android:text="delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/buttonUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="96dp"
+            android:layout_marginBottom="20dp"
+            android:text="Update"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextDiagnosticCode"
+            android:layout_width="202dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="112dp"
+            android:ems="10"
+            android:hint="Diagnostic code"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

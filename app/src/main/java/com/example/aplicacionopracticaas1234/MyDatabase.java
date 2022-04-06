@@ -85,6 +85,7 @@ class MyDatabase extends SQLiteOpenHelper {
         contentValues.put(COLUMN_SYMPTOM_DIARRHEA, reportInfo.getDiarrhea() ? 1 : 0);
         contentValues.put(COLUMN_CLOSE_CONTACT, reportInfo.getCloseContact() ? 1 : 0);
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
+        sqLiteDatabase.close();
     }
     private int getId(){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
@@ -96,11 +97,33 @@ class MyDatabase extends SQLiteOpenHelper {
     public int getDiagnosticCode(){
         return  this.getId();
     }
-    public void UpdateReport(SQLiteDatabase sqLiteDatabase){
-        //sqLiteDatabase.update();
+
+    public void UpdateReport(ReportInfo reportInfo){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_SYMPTOM_START, reportInfo.getStartDate());
+        contentValues.put(COLUMN_SYMPTOM_FEVER, reportInfo.getFever() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_COUGH, reportInfo.getCough() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_SHORTNESS, reportInfo.getSore() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_FATIGUE, reportInfo.getFatigue() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_MUSCLE, reportInfo.getMuscle() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_HEADACHE, reportInfo.getHeadache() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_LOSS_TASTE, reportInfo.getNewLoss() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_SORE, reportInfo.getSore() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_CONGESTION, reportInfo.getCongestion() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_NAUSEA, reportInfo.getNausea() ? 1 : 0);
+        contentValues.put(COLUMN_SYMPTOM_DIARRHEA, reportInfo.getDiarrhea() ? 1 : 0);
+        contentValues.put(COLUMN_CLOSE_CONTACT, reportInfo.getCloseContact() ? 1 : 0);
+        String [] args = new String []{String.valueOf(reportInfo.getDiagnosticCode())};
+        sqLiteDatabase.update(TABLE_NAME,contentValues,"diagnostic_code=?", args);
+        sqLiteDatabase.close();
     }
 
-    public void DeleteReport(SQLiteDatabase sqLiteDatabase){
+    public void DeleteReport(ReportInfo reportInfo){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        String [] args = new String []{String.valueOf(reportInfo.getDiagnosticCode())};
+        sqLiteDatabase.delete(TABLE_NAME,"diagnostic_code=?", args);
+        sqLiteDatabase.close();
 
     }
 
