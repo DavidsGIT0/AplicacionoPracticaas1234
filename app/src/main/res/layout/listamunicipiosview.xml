@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/casos"
+        android:id="@+id/numCasos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="xCasos"
@@ -42,7 +42,7 @@
         app:layout_constraintVertical_bias="0.094" />
 
     <TextView
-        android:id="@+id/municipi"
+        android:id="@+id/nomMun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Xmun"

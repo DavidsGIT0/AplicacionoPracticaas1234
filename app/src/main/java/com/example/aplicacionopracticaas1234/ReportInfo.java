@@ -2,7 +2,7 @@ package com.example.aplicacionopracticaas1234;
 
 public class ReportInfo {
     private Integer diagnosticCode;
-    private String startDate;
+    private String startDate, municipio;
     private Boolean fever, cough, shortness, fatigue, muscle, headache, newLoss, sore, congestion, nausea,
             diarrhea, closeContact;
 
@@ -20,7 +20,6 @@ public class ReportInfo {
         this.nausea = nausea;
         this.diarrhea = diarrhea;
         this.closeContact = closeContact;
-
     }
 
     public ReportInfo(Integer diagnosticCode, String startDate, Boolean fever, Boolean cough, Boolean shortness, Boolean fatigue, Boolean muscle, Boolean headache, Boolean newLoss, Boolean sore, Boolean congestion, Boolean nausea, Boolean diarrhea, Boolean closeContact) {
@@ -39,6 +38,23 @@ public class ReportInfo {
         this.nausea = nausea;
         this.diarrhea = diarrhea;
         this.closeContact = closeContact;
+    }
+
+    public ReportInfo(String startDate, Boolean fever, Boolean cough, Boolean shortness, Boolean fatigue, Boolean muscle, Boolean headache, Boolean newLoss, Boolean sore, Boolean congestion, Boolean nausea, Boolean diarrhea, Boolean closeContact, String municipio) {
+        this.startDate = startDate;
+        this.fever = fever;
+        this.cough = cough;
+        this.shortness = shortness;
+        this.fatigue = fatigue;
+        this.muscle = muscle;
+        this.headache = headache;
+        this.newLoss = newLoss;
+        this.sore = sore;
+        this.congestion = congestion;
+        this.nausea = nausea;
+        this.diarrhea = diarrhea;
+        this.closeContact = closeContact;
+        this.municipio = municipio;
     }
 
     public ReportInfo() {
@@ -156,4 +172,8 @@ public class ReportInfo {
     public void setCloseContact(Boolean closeContact) {
         this.closeContact = closeContact;
     }
+
+    public String getMunicipio() { return municipio; }
+
+    public void setMunicipio(String municipio) { this.municipio = municipio;}
 }

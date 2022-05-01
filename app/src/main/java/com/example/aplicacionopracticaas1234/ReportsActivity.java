@@ -19,6 +19,7 @@ public class ReportsActivity extends AppCompatActivity {
     EditText startDate, diagnosticCode2;
     TextView diagnosticCode;
     ReportInfo reportInfo ;
+    String codMunicipio;
 
     private MyDatabase myDatabase;
 
@@ -27,6 +28,7 @@ public class ReportsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
 
+        codMunicipio = getIntent().getStringExtra("cod_municipio");
         reportAddInfo = (Button) findViewById(R.id.buttonAddInfo);
         reportUpdateInfo = (Button) findViewById(R.id.buttonUpdate);
         reportDeleteInfo = (Button) findViewById(R.id.buttonDelete);
@@ -60,7 +62,7 @@ public class ReportsActivity extends AppCompatActivity {
                             String.valueOf(startDate.getText()), fever.isChecked(), cough.isChecked(),
                             shortness.isChecked(), fatigue.isChecked(), muscle.isChecked(), headache.isChecked(),
                             newLoss.isChecked(), sore.isChecked(), congestion.isChecked(), nausea.isChecked(),
-                            diarrhea.isChecked(), closeContact.isChecked());
+                            diarrhea.isChecked(), closeContact.isChecked(), codMunicipio);
 
                      myDatabase.InsertReport(reportInfo);
 

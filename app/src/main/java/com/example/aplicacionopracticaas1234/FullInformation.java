@@ -2,6 +2,8 @@ package com.example.aplicacionopracticaas1234;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.BundleCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.media.Image;
@@ -10,7 +12,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class FullInformation extends AppCompatActivity {
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+public class FullInformation extends AppCompatActivity implements RecyclerViewInterface {
 
     private ImageButton buttonMain;
     private TextView fMunicipi;
@@ -22,9 +25,13 @@ public class FullInformation extends AppCompatActivity {
     private TextView fAcumulada14;
     private TextView fCasos;
     private TextView fCodMunicipio;
+    private RecyclerView recyclerReport;
+    AdapterReportIdDate adapterReportIdDate;
+    FloatingActionButton addButtonMunicpio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MyDatabase md = new MyDatabase(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_information);
 
@@ -61,6 +68,26 @@ public class FullInformation extends AppCompatActivity {
         fCasos.setText(""+municipio.getCasosPCR());
         fCodMunicipio.setText(""+municipio.getCodMuncipio());
 
+        addButtonMunicpio = findViewById(R.id.addButtonMunicipio);
+
+        addButtonMunicpio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FullInformation.this, ReportsActivity.class);
+                intent.putExtra("cod_municipio", fCodMunicipio.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        recyclerReport = findViewById(R.id.RecyclerViewReport);
+        recyclerReport.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        adapterReportIdDate = new AdapterReportIdDate(this, md.FindReportsByMunicipality(fCodMunicipio.getText().toString()),this );
+        recyclerReport.setAdapter(adapterReportIdDate);
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
 
     }
 }

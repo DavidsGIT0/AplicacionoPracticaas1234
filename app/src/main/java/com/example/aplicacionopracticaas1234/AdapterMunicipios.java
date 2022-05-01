@@ -1,27 +1,14 @@
 package com.example.aplicacionopracticaas1234;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
 import java.util.ArrayList;
 
 public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.ViewHolder> {
@@ -30,62 +17,67 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
     Context context;
     private View.OnClickListener mOnItemClickListener;
 
+    public AdapterMunicipios(Context c, RecyclerViewInterface recyclerViewInterface, ArrayList<Municipio> municipios){
+        context = c;
+        this.recyclerViewInterface = recyclerViewInterface;
+        this.municipios = municipios;
+    }
     public AdapterMunicipios(Context c, RecyclerViewInterface recyclerViewInterface){
         context = c;
         this.recyclerViewInterface = recyclerViewInterface;
-        Init();
+//        Init();
     }
 
     public Municipio getMunicipio(int pos){
         return municipios.get(pos);
     }
 
-    public void Init() {
-        municipios=new ArrayList<Municipio>();
-        InputStream is = context.getResources().openRawResource(R.raw.coviddata);
-        Writer writer = new StringWriter();
-
-        JSONObject json;
-        char[] buffer = new char[1024];
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);}
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                Municipio municipi;
-                JSONArray jsonArray = new JSONObject(writer.toString()).getJSONObject("result").getJSONArray("records");
-                for(int i = 0; i < jsonArray.length(); i++){
-                    municipi = new Municipio();
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    municipi.setId(Long.parseLong(jsonObject.getString("_id")));
-                    municipi.setCodMuncipio(Long.parseLong(jsonObject.getString("CodMunicipio")));
-                    municipi.setMunicipi(jsonObject.getString("Municipi"));
-                    municipi.setCasosPCR(Integer.parseInt(jsonObject.getString("Casos PCR+")));
-                    municipi.setIncidencia_acumulada(jsonObject.getString("Incidència acumulada PCR+"));
-                    municipi.setCasosPCR_14(Integer.parseInt(jsonObject.getString("Casos PCR+ 14 dies")));
-                    municipi.setIncidencia_acumulada_14(jsonObject.getString("Incidència acumulada PCR+14"));
-                    municipi.setDefuncions(Long.parseLong(jsonObject.getString("Defuncions")));
-                    municipi.setTaxa_defuncio(jsonObject.getString("Taxa de defunció"));
-
-                    //System.out.println(jsonObject.getString("Municipi"));
-                    municipios.add(municipi);
-                }
-                is.close();
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-        //The String writer.toString() must be parsed in the municipalities ArrayList by
-        //using JSONArray and JSONObject
-    }
+//    public void Init() {
+//        municipios=new ArrayList<Municipio>();
+//        InputStream is = context.getResources().openRawResource(R.raw.coviddata);
+//        Writer writer = new StringWriter();
+//
+//        JSONObject json;
+//        char[] buffer = new char[1024];
+//        try {
+//            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+//            int n;
+//            while ((n = reader.read(buffer)) != -1) {
+//                writer.write(buffer, 0, n);}
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                Municipio municipi;
+//                JSONArray jsonArray = new JSONObject(writer.toString()).getJSONObject("result").getJSONArray("records");
+//                for(int i = 0; i < jsonArray.length(); i++){
+//                    municipi = new Municipio();
+//                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+//
+//                    municipi.setId(Long.parseLong(jsonObject.getString("_id")));
+//                    municipi.setCodMuncipio(Long.parseLong(jsonObject.getString("CodMunicipio")));
+//                    municipi.setMunicipi(jsonObject.getString("Municipi"));
+//                    municipi.setCasosPCR(Integer.parseInt(jsonObject.getString("Casos PCR+")));
+//                    municipi.setIncidencia_acumulada(jsonObject.getString("Incidència acumulada PCR+"));
+//                    municipi.setCasosPCR_14(Integer.parseInt(jsonObject.getString("Casos PCR+ 14 dies")));
+//                    municipi.setIncidencia_acumulada_14(jsonObject.getString("Incidència acumulada PCR+14"));
+//                    municipi.setDefuncions(Long.parseLong(jsonObject.getString("Defuncions")));
+//                    municipi.setTaxa_defuncio(jsonObject.getString("Taxa de defunció"));
+//
+//
+//                    municipios.add(municipi);
+//                }
+//                is.close();
+//            } catch (IOException | JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//        //The String writer.toString() must be parsed in the municipalities ArrayList by
+//        //using JSONArray and JSONObject
+//    }
 
     @Override
     public int getItemCount() {
@@ -104,9 +96,6 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        //holder.getTextViewMunicipi().setText(String.valueOf(municipios.get(position).getMunicipi()));
         holder.asignarMunicipio(municipios.get(position).getMunicipi());
         holder.asignarCasos(municipios.get(position).getCasosPCR());
 
@@ -123,8 +112,8 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
 
         public ViewHolder(View view, RecyclerViewInterface recyclerViewInterface) {
             super(view);
-            municipi = (TextView) view.findViewById(R.id.municipi);
-            casos = (TextView) view.findViewById(R.id.casos);
+            municipi = (TextView) view.findViewById(R.id.nomMun);
+            casos = (TextView) view.findViewById(R.id.numCasos);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
